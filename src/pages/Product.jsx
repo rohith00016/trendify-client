@@ -66,7 +66,7 @@ const Product = () => {
           <div className="flex justify-between overflow-x-auto sm:flex-col sm:overflow-y-scroll sm:justify-normal sm:w-[18.7%] w-full">
             {productData.image.map((item, index) => (
               <img
-                src={`https://bug-cart-server.onrender.com/images/${item}.png`}
+                src={`${import.meta.env.VITE_SERVER_URL}/images/${item}.png`}
                 key={index}
                 onClick={() => setImage(item)}
                 className={`w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer ${
