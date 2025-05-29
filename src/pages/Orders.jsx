@@ -26,7 +26,6 @@ const Orders = () => {
 
   return (
     <div className="min-h-screen sm:max-w-[90%] mx-auto">
-      {/* Header Section */}
       <div>
         <div className="px-4 sm:px-6 lg:px-8 pt-20 ">
           <div className="">
@@ -38,7 +37,6 @@ const Orders = () => {
         </div>
       </div>
 
-      {/* Orders Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-8">
         {orders.length === 0 ? (
           <div className="text-center py-16">
@@ -72,7 +70,6 @@ const Orders = () => {
                 key={orderIndex}
                 className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
               >
-                {/* Order Header */}
                 <div className="bg-gradient-to-r from-neutral-800 to-neutral-900 px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-between text-white">
                     <h2 className="text-lg font-semibold">
@@ -85,7 +82,6 @@ const Orders = () => {
                   </div>
                 </div>
 
-                {/* Order Items */}
                 <div className="divide-y divide-gray-100">
                   {order.items.map((product, productIndex) => (
                     <div
@@ -95,7 +91,6 @@ const Orders = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="flex items-start space-x-4">
-                            {/* Product Image Placeholder */}
                             <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
                               <svg
                                 className="w-8 h-8 text-gray-400"
@@ -112,7 +107,6 @@ const Orders = () => {
                               </svg>
                             </div>
 
-                            {/* Product Details */}
                             <div className="flex-1 min-w-0">
                               <h3 className="text-lg font-semibold text-gray-900 mb-1">
                                 {product.productId.name}
@@ -134,7 +128,6 @@ const Orders = () => {
                           </div>
                         </div>
 
-                        {/* Review Button */}
                         <button
                           onClick={() => openModal(product)}
                           className="ml-4 inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -159,7 +152,6 @@ const Orders = () => {
                   ))}
                 </div>
 
-                {/* Shipping Address */}
                 <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0 mt-1">
@@ -204,7 +196,6 @@ const Orders = () => {
         )}
       </div>
 
-      {/* Review Modal */}
       {isModalOpen && (
         <ReviewModal product={selectedProduct} onClose={closeModal} />
       )}

@@ -14,13 +14,11 @@ const WishlistContextProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  // Get auth token
   const getAuthToken = () => {
     const token = localStorage.getItem("token");
     return token;
   };
 
-  // Fetch wishlist from backend
   const getWishlist = useCallback(async () => {
     const token = getAuthToken();
     if (!token || isFetched) {
@@ -53,48 +51,12 @@ const WishlistContextProvider = ({ children }) => {
     }
   }, [isFetched, navigate]);
 
-  // Fetch wishlist on mount if user is logged in
   useEffect(() => {
     if (getAuthToken()) {
       getWishlist();
     }
   }, [getWishlist]);
 
-  // Add to wishlist
-  const addToWishlist = async (productId) => {
-    const token = getAuthToken();
-    if (!token) {
-      toast.error("Please log in to add items to your wishlist");
-      navigate("/login");
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const response = await axiosInstance.post(`/wishlist/add`, { productId });
-      const items = response.data.items || [];
-      setWishlistData(items);
-      setWishlistItems(
-        items.reduce((acc, item) => {
-          acc[item.productId._id] = true;
-          return acc;
-        }, {})
-      );
-      toast.success("Item Added To Wishlist");
-    } catch (err) {
-      const errorMsg = err.response?.data?.error || "Failed to add to wishlist";
-      console.error("Add to wishlist error:", err.response?.data || err);
-      toast.error(errorMsg);
-      if (err.response?.status === 401) {
-        localStorage.removeItem("token");
-        navigate("/login");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Remove from wishlist
   const removeFromWishlist = async (productId) => {
     const token = getAuthToken();
     if (!token) {
@@ -139,7 +101,6 @@ const WishlistContextProvider = ({ children }) => {
     isLoading,
     error,
     currency: "$",
-    addToWishlist,
     removeFromWishlist,
     fetchWishlist: getWishlist,
   };

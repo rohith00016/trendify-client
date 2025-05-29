@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 import "react-toastify/dist/ReactToastify.css";
 
-// Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
 const Collection = lazy(() => import("./pages/Collection"));
 const About = lazy(() => import("./pages/About"));

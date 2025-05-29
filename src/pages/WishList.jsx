@@ -16,7 +16,7 @@ const Wishlist = () => {
   } = useContext(WishlistContext);
 
   useEffect(() => {
-    fetchWishlist(); // Fetch wishlist from backend on component mount
+    fetchWishlist();
   }, [fetchWishlist]);
 
   const toggleWishlist = (itemId) => {
@@ -35,7 +35,6 @@ const Wishlist = () => {
     return <p className="text-center text-red-500">{error}</p>;
   }
 
-  // Safeguard for undefined wishlistData
   if (!wishlistData) {
     return <p className="text-center text-gray-500">Your wishlist is empty.</p>;
   }
@@ -71,12 +70,20 @@ const Wishlist = () => {
                   })}
                 </p>
               </div>
-              <img
-                src={assets.bin_icon}
-                alt="Remove"
-                className="w-5 h-5 cursor-pointer"
-                onClick={() => toggleWishlist(item.productId._id)}
-              />
+              <div className="flex items-center gap-6">
+                <button
+                  className="px-4 py-2 text-sm text-white bg-black active:bg-gray-700"
+                  aria-label="Add to cart"
+                >
+                  MOVE TO CART
+                </button>
+                <img
+                  src={assets.bin_icon}
+                  alt="Remove"
+                  className="w-5 h-5 cursor-pointer"
+                  onClick={() => toggleWishlist(item.productId._id)}
+                />
+              </div>
             </div>
           ))}
         </div>

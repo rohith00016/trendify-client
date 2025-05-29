@@ -19,7 +19,6 @@ const Product = () => {
   const [error, setError] = useState(null);
   const [feedbacks, setFeedbacks] = useState([]);
 
-  // Todo : To Get Product & Reviews Data
   useEffect(() => {
     const fetchProduct = async () => {
       setIsLoading(true);
@@ -59,9 +58,7 @@ const Product = () => {
 
   return productData ? (
     <div className="pt-10 transition-opacity duration-500 ease-in border-t-2 opacity-100">
-      {/* Product Content */}
       <div className="flex flex-col gap-12 sm:gap-12 sm:flex-row">
-        {/* Images */}
         <div className="flex flex-col-reverse flex-1 gap-3 sm:flex-row">
           <div className="flex justify-between overflow-x-auto sm:flex-col sm:overflow-y-scroll sm:justify-normal sm:w-[18.7%] w-full">
             {productData.image.map((item, index) => (
@@ -85,7 +82,6 @@ const Product = () => {
           </div>
         </div>
 
-        {/* Info */}
         <div className="flex-1">
           <h1 className="mt-2 text-2xl font-medium">{productData.name}</h1>
           <div className="flex items-center gap-1 mt-2">
@@ -151,7 +147,6 @@ const Product = () => {
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="mt-20">
         <div className="flex border-b">
           <button
@@ -220,7 +215,6 @@ const Product = () => {
         )}
       </div>
 
-      {/* Related Products */}
       <RelatedProducts
         category={productData.category}
         subCategory={productData.subCategory}

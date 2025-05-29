@@ -25,7 +25,7 @@ const ResetPassword = () => {
         password,
       });
       alert(res.data.message || "Password updated successfully");
-      navigate("/login"); // Redirect to login page
+      navigate("/login");
     } catch (error) {
       alert(error.response?.data?.message || "Reset failed");
     } finally {

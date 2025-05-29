@@ -4,8 +4,13 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { WishlistContext } from "../context/WishlistContext";
 
 const ProductItem = ({ id, image, name, price }) => {
-  const { currency, addToWishlist, removeFromWishlist, wishlistItems } =
-    useContext(WishlistContext);
+  const {
+    currency,
+    addToWishlist,
+    removeFromWishlist,
+    wishlistItems,
+    setWishlistItems,
+  } = useContext(WishlistContext);
 
   const isInWishlist = wishlistItems?.[id] || false;
 
@@ -15,7 +20,10 @@ const ProductItem = ({ id, image, name, price }) => {
     if (isInWishlist) {
       removeFromWishlist(id);
     } else {
-      addToWishlist(id);
+      setWishlistItems((prevWishlistItems) => ({
+        ...prevWishlistItems,
+        [id]: true,
+      }));
     }
   };
 

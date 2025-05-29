@@ -116,7 +116,6 @@ const Cart = () => {
               </div>
 
               <img
-                onClick={() => updateQuantity(item.productId._id, item.size, 0)}
                 className="w-4 mr-4 cursor-pointer sm:w-5"
                 src={assets.bin_icon}
                 alt="Remove"

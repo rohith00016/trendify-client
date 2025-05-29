@@ -55,16 +55,6 @@ const PlaceOrder = () => {
     fetchProfile();
   }, [getUserProfile]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setShippingAddress((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleUserDetailsChange = (e) => {
-    const { name, value } = e.target;
-    setUserDetails((prev) => ({ ...prev, [name]: value }));
-  };
-
   const handlePlaceOrder = async () => {
     const { city, zip, country, street, state } = shippingAddress;
     const { name, email, mobile } = userDetails;
@@ -75,17 +65,17 @@ const PlaceOrder = () => {
     const isMobileValid = (mobile) => /^[0-9]{7,15}$/.test(mobile.trim());
 
     if (!state || !city || !zip || !country || !mobile || !street) {
-      toast.error("Please fill in all shipping address fields.");
+      toast.error("Please ensure all shipping address fields are filled in your profile.");
       return;
     }
 
     if (!isEmailValid(email)) {
-      toast.error("Please enter a valid email address.");
+      toast.error("Please provide a valid email address in your profile.");
       return;
     }
 
     if (!isMobileValid(mobile)) {
-      toast.error("Please enter a valid mobile number (7–15 digits).");
+      toast.error("Please provide a valid mobile number (7–15 digits) in your profile.");
       return;
     }
 
@@ -116,7 +106,6 @@ const PlaceOrder = () => {
     navigate("/orders");
   };
 
-  // Show loader
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[80vh]">
@@ -138,60 +127,59 @@ const PlaceOrder = () => {
             name="email"
             placeholder="Email Address"
             value={userDetails.email}
-            onChange={handleUserDetailsChange}
             disabled
           />
           <input
-            className="w-full px-4 py-2 border border-gray-300 rounded"
+            className="w-full px-4 py-2 border border-gray-300 rounded disabled:bg-gray-100 cursor-not-allowed"
             type="text"
             name="street"
             placeholder="Street"
             value={shippingAddress.street}
-            onChange={handleInputChange}
+            disabled
           />
           <div className="flex gap-3">
             <input
-              className="w-full px-4 py-2 border border-gray-300 rounded"
+              className="w-full px-4 py-2 border border-gray-300 rounded disabled:bg-gray-100 cursor-not-allowed"
               type="text"
               name="city"
               placeholder="City"
               value={shippingAddress.city}
-              onChange={handleInputChange}
+              disabled
             />
             <input
-              className="w-full px-4 py-2 border border-gray-300 rounded"
+              className="w-full px-4 py-2 border border-gray-300 rounded disabled:bg-gray-100 cursor-not-allowed"
               type="text"
               name="state"
               placeholder="State"
               value={shippingAddress.state}
-              onChange={handleInputChange}
+              disabled
             />
           </div>
           <div className="flex gap-3">
             <input
-              className="w-full px-4 py-2 border border-gray-300 rounded"
+              className="w-full px-4 py-2 border border-gray-300 rounded disabled:bg-gray-100 cursor-not-allowed"
               type="text"
               name="zip"
               placeholder="Zip Code"
               value={shippingAddress.zip}
-              onChange={handleInputChange}
+              disabled
             />
             <input
-              className="w-full px-4 py-2 border border-gray-300 rounded"
+              className="w-full px-4 py-2 border border-gray-300 rounded disabled:bg-gray-100 cursor-not-allowed"
               type="text"
               name="country"
               placeholder="Country"
               value={shippingAddress.country}
-              onChange={handleInputChange}
+              disabled
             />
           </div>
           <input
-            className="w-full px-4 py-2 border border-gray-300 rounded"
+            className="w-full px-4 py-2 border border-gray-300 rounded disabled:bg-gray-100 cursor-not-allowed"
             type="tel"
             name="mobile"
             placeholder="Mobile"
             value={userDetails.mobile}
-            onChange={handleInputChange}
+            disabled
           />
         </div>
 
