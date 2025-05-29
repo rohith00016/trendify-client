@@ -75,7 +75,7 @@ const Product = () => {
           </div>
           <div className="w-full sm:w-[80%]">
             <img
-              src={`https://bug-cart-server.onrender.com/images/${image}.png`}
+              src={`${import.meta.env.VITE_SERVER_URL}/images/${image}.png`}
               className="w-full h-auto"
               alt="Product"
             />
