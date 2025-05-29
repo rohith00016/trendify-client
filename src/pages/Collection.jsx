@@ -45,6 +45,15 @@ const Collection = () => {
     );
   };
 
+  // Non-functional pagination click handlers
+  const handlePrevPage = () => {
+    // Intentionally empty
+  };
+
+  const handleNextPage = () => {
+    // Intentionally empty
+  };
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
@@ -149,6 +158,15 @@ const Collection = () => {
               </button>
             </div>
           )}
+        </div>
+        <div className="flex justify-center mt-8">
+          <button className="px-4 py-2 mr-2 bg-gray-200 rounded disabled:opacity-50">
+            Previous
+          </button>
+          <span className="px-4 py-2">Page 1 of 5</span>
+          <button className="px-4 py-2 ml-2 bg-gray-200 rounded disabled:opacity-50">
+            Next
+          </button>
         </div>
       </div>
     </div>
