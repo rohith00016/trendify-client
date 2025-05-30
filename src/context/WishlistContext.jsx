@@ -41,11 +41,6 @@ const WishlistContextProvider = ({ children }) => {
     } catch (err) {
       const errorMsg = err.response?.data?.error || "Failed to fetch wishlist";
       setError(errorMsg);
-      toast.error(errorMsg);
-      if (err.response?.status === 401) {
-        localStorage.removeItem("token");
-        navigate("/login");
-      }
     } finally {
       setIsLoading(false);
     }

@@ -1,57 +1,13 @@
-import { useState, useContext } from "react";
-import { toast } from "react-toastify";
-import axiosInstance from "../utils/axiosInstance";
-import { ReviewContext } from "../context/ReviewContext";
+import { useState } from "react";
 
 export default function ReviewModal({ product, onClose }) {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { addReview } = useContext(ReviewContext);
 
   const handleStarClick = (starRating) => {
     setRating(starRating);
-  };
-
-  const handleSubmit = async () => {
-    if (rating === 0) {
-      alert("Please select a rating");
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const reviewData = {
-        productId: product?.productId?._id,
-        productName: product?.productId?.name,
-        rating,
-        comment: reviewText,
-        price: product?.price,
-      };
-
-      // Add review to context
-      addReview(product?.productId?._id, reviewData);
-
-      // Todo: Replace with actual API call
-      const res = await axiosInstance.post("/review", reviewData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Check if the response status
-      if (res.status !== 201) {
-        throw new Error("Failed to submit review");
-      }
-      toast.success("Review submitted. Thank you!");
-      setIsModalOpen(false);
-      onClose(); // Call the onClose function to close the modal
-    } catch (error) {
-      toast.error(error.response.data.message);
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   const handleClose = () => {
@@ -70,7 +26,6 @@ export default function ReviewModal({ product, onClose }) {
     return texts[rating] || "Click to rate";
   };
 
-  // If product data is not available, show loading or error state
   if (!product || !product.productId) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -111,7 +66,6 @@ export default function ReviewModal({ product, onClose }) {
             </p>
           </div>
 
-          {/* Product Info */}
           <div className="bg-gray-50 rounded-xl p-4 mb-6">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -144,7 +98,6 @@ export default function ReviewModal({ product, onClose }) {
           </div>
 
           <div className="space-y-6">
-            {/* Star Rating */}
             <div>
               <div className="block text-sm font-semibold text-gray-700 mb-3">
                 Your Rating
@@ -170,7 +123,6 @@ export default function ReviewModal({ product, onClose }) {
               </p>
             </div>
 
-            {/* Review Text */}
             <div>
               <div className="block text-sm font-semibold text-gray-700 mb-3">
                 Your Review (Optional)
@@ -184,10 +136,7 @@ export default function ReviewModal({ product, onClose }) {
               />
             </div>
 
-            {/* Submit Button */}
             <button
-              onClick={handleSubmit}
-              disabled={isSubmitting}
               className={`w-full font-semibold py-3 px-6 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/30 ${
                 isSubmitting
                   ? "bg-gray-400 cursor-not-allowed text-white"

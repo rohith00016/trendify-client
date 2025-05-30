@@ -1,13 +1,11 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
-import { CartContext } from "./CartContext";
 
 export const OrderContext = createContext();
 
 const OrderContextProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
-  const { resetCart } = useContext(CartContext);
 
   const fetchUserOrders = async () => {
     const token = localStorage.getItem("token");
@@ -28,8 +26,6 @@ const OrderContextProvider = ({ children }) => {
   const placeOrder = async (shippingAddress) => {
     try {
       const response = await axiosInstance.post(`/order`, { shippingAddress });
-      toast.success("Order placed successfully!");
-      resetCart();
       return response.data;
     } catch (error) {
       toast.error(

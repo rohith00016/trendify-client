@@ -147,9 +147,6 @@ const CartContextProvider = ({ children }) => {
     }, 0);
   };
 
-  const resetCart = () => {
-    setCartItems([]);
-  };
 
   const value = {
     cartItems,
@@ -164,7 +161,6 @@ const CartContextProvider = ({ children }) => {
     removeFromCart,
     getCartCount,
     getCartAmount,
-    resetCart,
     navigate,
   };
 

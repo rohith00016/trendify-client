@@ -55,7 +55,9 @@ const Wishlist = () => {
             >
               <img
                 className="w-24 h-24 object-cover"
-                src={item.productId.image && item.productId.image[0]}
+                src={`${import.meta.env.VITE_SERVER_URL}/images/${
+                  item.productId.image[0]
+                }`}
                 alt={item.productId.name || "Product"}
               />
               <div className="flex-1">
