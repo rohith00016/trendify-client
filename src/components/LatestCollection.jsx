@@ -15,7 +15,7 @@ const LatestCollection = () => {
       setIsLoading(true);
       try {
         const data = await fetchLatestProducts({ page: 1 });
-        setLatestProducts(data.products.slice(0, 10)); // Limit to 10 as per original logic
+        setLatestProducts(data.products.slice(0, 10));
       } catch (err) {
         setError(err.message || "Failed to fetch latest products");
         toast.error(err.message || "Failed to fetch latest products");

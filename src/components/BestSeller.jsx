@@ -15,7 +15,7 @@ const BestSeller = () => {
       setIsLoading(true);
       try {
         const data = await fetchBestSellers({ page: 1 });
-        setBestSellers(data.products.slice(0, 5)); // Limit to 5 as per original logic
+        setBestSellers(data.products.slice(0, 5));
       } catch (err) {
         setError(err.message || "Failed to fetch bestsellers");
         toast.error(err.message || "Failed to fetch bestsellers");

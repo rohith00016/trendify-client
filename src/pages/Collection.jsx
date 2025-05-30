@@ -45,15 +45,6 @@ const Collection = () => {
     );
   };
 
-  // Non-functional pagination click handlers
-  const handlePrevPage = () => {
-    // Intentionally empty
-  };
-
-  const handleNextPage = () => {
-    // Intentionally empty
-  };
-
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
